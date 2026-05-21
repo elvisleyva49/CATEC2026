@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { ArrowRight, Terminal } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { Chip } from '../ui/Chip';
-import hologramImg from '../../assets/glowing_cybernetic_core.png';
 
 export const Hero: React.FC = () => {
   const line1 = 'CATEC 2026 - I:';
@@ -95,9 +94,6 @@ export const Hero: React.FC = () => {
         </div>
 
         <div className="hero-visual animated-float">
-          <div className="hologram-backdrop-wrapper">
-            <img src={hologramImg} alt="UPT Systems Cyber Core" className="hero-hologram-img" />
-          </div>
           <div className="code-editor-window glass-container">
             <div className="editor-header">
               <div className="editor-dots">
@@ -105,22 +101,22 @@ export const Hero: React.FC = () => {
                 <span className="dot dot-yellow"></span>
                 <span className="dot dot-green"></span>
               </div>
-              <span className="editor-title label-caps"><Terminal size={12} className="inline mr-1" /> systems.cpp</span>
+              <span className="editor-title label-caps"><Terminal size={12} className="inline mr-1" /> systems.upt</span>
             </div>
             <div className="editor-body">
-              <pre className="code-block label-mono">
-                <code>
-                  <span className="code-keyword">void</span> <span className="code-function">systems</span>() &#123;
-                  core.<span className="code-method">connect</span>(NODE_PRIMARY);
-                  uplink.status = SYNC_COMPLETE;
+              <pre className="code-block label-mono"><code dangerouslySetInnerHTML={{ __html:
+`<span class="code-keyword">while</span>(<span class="code-method">alive</span>):
+    <span class="code-function">learn</span>()
 
-                  <span className="code-keyword">while</span>(event.active) &#123;
-                  <span className="code-function">processStream</span>();
-                  <span className="code-function">innovate</span>(Tacna_00110);
-                  &#125;
-                  &#125;
-                </code>
-              </pre>
+    <span class="code-keyword">if</span> fear &gt; curiosity:
+        <span class="code-keyword">break</span>
+
+    <span class="code-function">build</span>()
+    <span class="code-function">fail</span>()
+    <span class="code-function">improve</span>()
+
+<span class="code-keyword">return</span> <span class="code-method">"version++"</span>`
+              }} /></pre>
             </div>
           </div>
         </div>

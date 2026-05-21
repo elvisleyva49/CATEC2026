@@ -9,12 +9,12 @@ export const About: React.FC = () => {
         <div className="about-left">
           <span className="section-tag label-mono text-green">// SOBRE EL EVENTO</span>
           <h2 className="section-title headline-lg">
-            Conectando la Academia con la Vanguardia Industrial
+            Un evento hecho por estudiantes, para estudiantes
           </h2>
           <p className="section-desc body-md">
-            Este evento es el epicentro de la ingeniería de sistemas en el sur del país. Buscamos trascender la teoría universitaria para sumergir a los estudiantes en desafíos reales, metodologías ágiles y las tecnologías que están moldeando el futuro global.
+            Las conferencias de CATEC son realizadas cada año con el fin de aumentar el conocimiento a estudiantes de la Universidad Privada de Tacna, por el medio tecnológico los estudiantes de último año son convocados para realizar el evento donde se presentan expositores de todo el mundo para hablar de temas en tendencia sobre tecnología.
           </p>
-          
+
           <div className="stats-row">
             <Card className="stat-card" glowOnHover={false}>
               <h3 className="stat-number headline-lg text-cyan">500+</h3>
