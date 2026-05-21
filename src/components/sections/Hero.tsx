@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ArrowRight, Terminal } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { Chip } from '../ui/Chip';
+import uptFondo from '../../assets/uptfondo.png';
 
 export const Hero: React.FC = () => {
   const line1 = 'CATEC 2026 - I:';
@@ -94,31 +95,11 @@ export const Hero: React.FC = () => {
         </div>
 
         <div className="hero-visual animated-float">
-          <div className="code-editor-window glass-container">
-            <div className="editor-header">
-              <div className="editor-dots">
-                <span className="dot dot-red"></span>
-                <span className="dot dot-yellow"></span>
-                <span className="dot dot-green"></span>
-              </div>
-              <span className="editor-title label-caps"><Terminal size={12} className="inline mr-1" /> systems.upt</span>
-            </div>
-            <div className="editor-body">
-              <pre className="code-block label-mono"><code dangerouslySetInnerHTML={{ __html:
-`<span class="code-keyword">while</span>(<span class="code-method">alive</span>):
-    <span class="code-function">learn</span>()
-
-    <span class="code-keyword">if</span> fear &gt; curiosity:
-        <span class="code-keyword">break</span>
-
-    <span class="code-function">build</span>()
-    <span class="code-function">fail</span>()
-    <span class="code-function">improve</span>()
-
-<span class="code-keyword">return</span> <span class="code-method">"version++"</span>`
-              }} /></pre>
-            </div>
-          </div>
+          <img 
+            src={uptFondo} 
+            alt="Estudiante programando en CATEC"
+            className="hero-image"
+          />
         </div>
       </div>
     </section>

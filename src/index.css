@@ -546,7 +546,17 @@ h6 {
   position: relative;
 }
 
-/* Mock IDE Code Editor Window */
+/* Hero Image */
+.hero-image {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  border-radius: var(--rounded-lg);
+  object-fit: cover;
+  filter: drop-shadow(0 15px 35px rgba(0,0,0,0.5));
+}
+
+/* Mock IDE Code Editor Window (Legacy) */
 .code-editor-window {
   width: 100%;
   max-width: 440px;
@@ -1022,48 +1032,113 @@ h6 {
 /* 7. Sponsors Section */
 .sponsors-section {
   border-color: rgba(255, 255, 255, 0.05);
+  background: radial-gradient(circle at center, rgba(15, 23, 42, 0.6) 0%, transparent 70%);
 }
 
-.sponsors-title {
-  margin-bottom: 32px;
+.sponsors-marquee-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 40px 0;
+  white-space: nowrap;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
 }
 
-.sponsors-grid {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 64px;
-  flex-wrap: wrap;
-}
-
-.sponsor-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  user-select: none;
-}
-
-.sponsor-item:hover {
-  transform: scale(1.05);
-}
-
-.sponsor-item:hover .sponsor-icon,
-.sponsor-item:hover .sponsor-name {
-  color: #ffffff;
-}
-
-.sponsor-icon {
+.sponsors-marquee {
   display: inline-flex;
   align-items: center;
-  transition: color 0.3s ease;
+  gap: 60px;
+  animation: scroll-marquee 25s linear infinite;
+  padding-right: 60px; /* match the gap so it loops seamlessly without a stutter */
+}
+
+.sponsors-marquee:hover {
+  animation-play-state: paused;
+}
+
+.sponsor-logo-card {
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  flex-shrink: 0;
+  padding: 30px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.08); /* Más visible */
+  border: 1px solid rgba(255, 255, 255, 0.15); /* Borde más notorio */
+  backdrop-filter: blur(10px);
+}
+
+.sponsor-logo-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  background: rgba(255, 255, 255, 0.12); /* Más visible al pasar el mouse */
+  border-color: rgba(47, 217, 244, 0.4);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(47, 217, 244, 0.2);
+}
+
+.sponsor-logo-img {
+  width: 200px;
+  height: 120px;
+  object-fit: contain;
+  transition: all 0.4s ease;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
 }
 
 .sponsor-name {
-  font-weight: 700;
+  margin: 0;
   font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-on-surface);
+  text-align: center;
+  letter-spacing: 0.5px;
   transition: color 0.3s ease;
+}
+
+.sponsor-logo-card:hover .sponsor-name {
+  color: var(--color-primary);
+  text-shadow: 0 0 10px rgba(47, 217, 244, 0.4);
+}
+
+.sponsor-socials {
+  display: flex;
+  gap: 18px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.sponsor-logo-card:hover .sponsor-socials {
+  transform: translateY(-5px);
+}
+
+.sponsor-social-icon {
+  color: var(--color-on-surface-variant);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.sponsor-social-icon:hover {
+  color: #ffffff;
+  background: var(--color-primary);
+  box-shadow: 0 0 15px var(--color-primary);
+  transform: translateY(-3px);
+}
+
+@keyframes scroll-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* Moves exactly half the width to loop seamlessly because we duplicated the array */
+  }
 }
 
 /* 8. Footer Section */
