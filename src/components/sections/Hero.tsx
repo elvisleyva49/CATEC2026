@@ -95,11 +95,13 @@ export const Hero: React.FC = () => {
         </div>
 
         <div className="hero-visual animated-float">
-          <img 
-            src={uptFondo} 
-            alt="Estudiante programando en CATEC"
-            className="hero-image"
-          />
+          <div className="hero-image-wrapper">
+            <img 
+              src={uptFondo} 
+              alt="Estudiante programando en CATEC"
+              className="hero-image"
+            />
+          </div>
         </div>
       </div>
     </section>

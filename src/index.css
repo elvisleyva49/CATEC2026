@@ -541,17 +541,37 @@ h6 {
 }
 
 .hero-visual {
+  position: relative;
   display: flex;
   justify-content: flex-end;
+  overflow: visible;
+}
+
+/* Hero Image Wrapper — holds the image and applies edge fades */
+.hero-image-wrapper {
   position: relative;
+  width: 140%;
+  max-width: none;
+  margin-right: -25%;
+  /* Fade left & right edges with a CSS mask */
+  -webkit-mask-image:
+    linear-gradient(to right,
+      transparent 0%,
+      black 18%,
+      black 75%,
+      transparent 100%);
+  mask-image:
+    linear-gradient(to right,
+      transparent 0%,
+      black 18%,
+      black 75%,
+      transparent 100%);
 }
 
 /* Hero Image */
 .hero-image {
   width: 100%;
-  max-width: 600px;
   height: auto;
-  border-radius: var(--rounded-lg);
   object-fit: cover;
   filter: drop-shadow(0 15px 35px rgba(0,0,0,0.5));
 }
@@ -1269,6 +1289,11 @@ h6 {
 
   .hero-visual {
     justify-content: center;
+  }
+
+  .hero-image-wrapper {
+    width: 100%;
+    margin-right: 0;
   }
 
   .about-grid {
