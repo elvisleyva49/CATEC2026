@@ -34,7 +34,7 @@ export const Footer: React.FC = () => {
         <div className="footer-brand-column">
           <div className="logo-wrapper footer-logo" onClick={scrollToTop}>
             <Cpu className="logo-icon text-cyan" size={24} />
-            <span className="logo-text">UPT <span className="text-muted">Systems Engineering</span></span>
+            <span className="logo-text">UPT <span className="text-muted">Catec 2026-I</span></span>
           </div>
           <p className="footer-description body-md">
             Empoderando a la próxima generación de ingenieros en el sur del Perú a través de la excelencia técnica.
@@ -65,7 +65,7 @@ export const Footer: React.FC = () => {
           </div>
         </div>
       </div>
-      
+
       <div className="footer-bottom">
         <p className="copyright-text label-mono">
           © {currentYear} UPT Systems Engineering Event. All rights reserved.
