@@ -65,25 +65,25 @@ export const Header: React.FC = () => {
             className={`nav-link ${activeSection === 'about' ? 'active' : ''}`}
             onClick={() => scrollToSection('about')}
           >
-            About
+            Acerca de
           </span>
           <span
             className={`nav-link ${activeSection === 'speakers' ? 'active' : ''}`}
             onClick={() => scrollToSection('speakers')}
           >
-            Speakers
+            Ponentes
           </span>
           <span
             className={`nav-link ${activeSection === 'schedule' ? 'active' : ''}`}
             onClick={() => scrollToSection('schedule')}
           >
-            Schedule
+            Calendario
           </span>
           <span
             className={`nav-link ${activeSection === 'register' ? 'active' : ''}`}
             onClick={() => scrollToSection('register')}
           >
-            Register
+            Registro
           </span>
         </nav>
 
@@ -93,7 +93,7 @@ export const Header: React.FC = () => {
             className="register-now-btn"
             onClick={() => scrollToSection('register')}
           >
-            Register Now
+            Regístrate Ahora
           </Button>
 
           <button
@@ -114,32 +114,32 @@ export const Header: React.FC = () => {
               className={`mobile-nav-link ${activeSection === 'about' ? 'active' : ''}`}
               onClick={() => scrollToSection('about')}
             >
-              About
+              Acerca de
             </span>
             <span
               className={`mobile-nav-link ${activeSection === 'speakers' ? 'active' : ''}`}
               onClick={() => scrollToSection('speakers')}
             >
-              Speakers
+              Ponentes
             </span>
             <span
               className={`mobile-nav-link ${activeSection === 'schedule' ? 'active' : ''}`}
               onClick={() => scrollToSection('schedule')}
             >
-              Schedule
+              Calendario
             </span>
             <span
               className={`mobile-nav-link ${activeSection === 'register' ? 'active' : ''}`}
               onClick={() => scrollToSection('register')}
             >
-              Register
+              Registro
             </span>
             <Button
               variant="primary"
               className="w-full mt-4"
               onClick={() => scrollToSection('register')}
             >
-              Register Now
+              Regístrate Ahora
             </Button>
           </nav>
         </div>

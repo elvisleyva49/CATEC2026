@@ -11,28 +11,46 @@ interface Speaker {
 export const Speakers: React.FC = () => {
   const speakersList: Speaker[] = [
     {
-      name: 'Dr. Elena Rodriguez',
+      name: 'Ing. Maycol Jesus Escobedo Pacheco',
       role: 'Cloud Architect',
       company: 'AWS',
-      image: '/speakers/elena.png',
+      image: '/speakers/ponente1.jpg',
     },
     {
-      name: 'Ing. Mateo Aurelio',
+      name: 'Ing. Walter Edison Alanya Flores',
       role: 'Data Principal',
       company: 'Google',
-      image: '/speakers/mateo.png',
+      image: '/speakers/ponente2.png',
     },
     {
-      name: 'MSc. David Chen',
+      name: 'Ing. Alex Francisco Choquecahua Ayna',
       role: 'Cybersecurity Lead',
       company: 'IBM',
-      image: '/speakers/david.png',
+      image: '/speakers/ponente3.png',
     },
     {
-      name: 'Dra. Sofia Mendez',
+      name: 'Ing. Dr. Renzo Tazo Cohaila',
       role: 'AI Research',
       company: 'OpenAI',
-      image: '/speakers/sofia.png',
+      image: '/speakers/ponente4.png',
+    },
+    {
+      name: 'Ing. Juan Sebastian González Sanabria',
+      role: 'DevOps Engineer',
+      company: 'Microsoft',
+      image: '/speakers/ponente5.png',
+    },
+    {
+      name: 'Ing. Alonso Godinez Salazar',
+      role: 'Frontend Lead',
+      company: 'Vercel',
+      image: '/speakers/ponente6.png',
+    },
+    {
+      name: 'Ing. Eduardo Lozano Zapata',
+      role: 'Backend Architect',
+      company: 'Meta',
+      image: '/speakers/ponente7.png',
     },
   ];
 
@@ -64,6 +82,21 @@ export const Speakers: React.FC = () => {
                 <p className="speaker-role body-md">
                   {speaker.role} <span className="speaker-company text-muted">@ {speaker.company}</span>
                 </p>
+                <div style={{ display: 'flex', justifyContent: 'center', marginTop: '15px' }}>
+                  <a 
+                    href="https://www.linkedin.com/" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="speaker-social-btn"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                      <rect x="2" y="9" width="4" height="12"></rect>
+                      <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                    <span>LinkedIn</span>
+                  </a>
+                </div>
               </div>
             </Card>
           ))}

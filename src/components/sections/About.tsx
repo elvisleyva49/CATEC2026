@@ -1,8 +1,40 @@
-import React from 'react';
-import { Cpu, Users } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Card } from '../ui/Card';
 
+import img1 from '../../assets/img1.webp';
+import img2 from '../../assets/img2.webp';
+import img3 from '../../assets/img3.webp';
+import img4 from '../../assets/img4.webp';
+import img5 from '../../assets/img5.webp';
+import img6 from '../../assets/img6.webp';
+import img7 from '../../assets/img7.webp';
+import img8 from '../../assets/img8.webp';
+import img9 from '../../assets/img9.webp';
+import img10 from '../../assets/img10.webp';
+
+const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10];
+
 export const About: React.FC = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    }, 5000);
+
+    // Al depender de currentImageIndex, el timer se reinicia cada vez que cambia la imagen
+    return () => clearInterval(interval);
+  }, [currentImageIndex]);
+
   return (
     <section id="about" className="about-section section-padding">
       <div className="container about-grid">
@@ -28,29 +60,61 @@ export const About: React.FC = () => {
         </div>
 
         <div className="about-right">
-          <Card className="tech-feature-card">
-            <div className="feature-icon-wrapper text-cyan">
-              <Cpu size={24} />
+          <div className="carousel-card" style={{ position: 'relative', height: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'transparent' }}>
+            {images.map((img, idx) => (
+              <img 
+                key={idx}
+                src={img} 
+                alt={`CATEC event gallery ${idx + 1}`} 
+                style={{ 
+                  position: 'absolute',
+                  maxWidth: '100%', 
+                  maxHeight: '100%', 
+                  objectFit: 'contain', 
+                  borderRadius: '12px',
+                  opacity: currentImageIndex === idx ? 1 : 0,
+                  transition: 'opacity 0.8s ease-in-out',
+                  zIndex: currentImageIndex === idx ? 1 : 0
+                }}
+              />
+            ))}
+            
+            <button 
+              onClick={prevImage}
+              style={{
+                position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)',
+                backgroundColor: 'rgba(0, 0, 0, 0.6)', color: 'white', border: 'none',
+                padding: '10px', borderRadius: '50%', cursor: 'pointer', zIndex: 10
+              }}
+              aria-label="Previous image"
+            >
+              <ChevronLeft size={24} />
+            </button>
+            <button 
+              onClick={nextImage}
+              style={{
+                position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)',
+                backgroundColor: 'rgba(0, 0, 0, 0.6)', color: 'white', border: 'none',
+                padding: '10px', borderRadius: '50%', cursor: 'pointer', zIndex: 10
+              }}
+              aria-label="Next image"
+            >
+              <ChevronRight size={24} />
+            </button>
+            
+            <div style={{ position: 'absolute', bottom: '15px', left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: '8px' }}>
+              {images.map((_, idx) => (
+                <div 
+                  key={idx} 
+                  style={{
+                    width: '10px', height: '10px', borderRadius: '50%',
+                    backgroundColor: idx === currentImageIndex ? '#00e5ff' : 'rgba(255, 255, 255, 0.4)',
+                    transition: 'background-color 0.3s'
+                  }}
+                />
+              ))}
             </div>
-            <div className="feature-content">
-              <h3 className="feature-title headline-md">Deep Tech</h3>
-              <p className="feature-desc body-md">
-                Exploración profunda en IA, Ciberseguridad y Computación en la Nube.
-              </p>
-            </div>
-          </Card>
-
-          <Card className="tech-feature-card">
-            <div className="feature-icon-wrapper text-green">
-              <Users size={24} />
-            </div>
-            <div className="feature-content">
-              <h3 className="feature-title headline-md">Networking</h3>
-              <p className="feature-desc body-md">
-                Conexiones directas con líderes de la industria tecnológica local e internacional.
-              </p>
-            </div>
-          </Card>
+          </div>
         </div>
       </div>
     </section>

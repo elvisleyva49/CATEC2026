@@ -704,12 +704,14 @@ h6 {
 
 /* 4. Speakers Section */
 .speakers-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
 }
 
 .speaker-card {
+  width: calc(25% - 15px);
   overflow: hidden;
   padding: 0;
 }
@@ -726,12 +728,10 @@ h6 {
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s ease;
-  filter: grayscale(100%);
 }
 
 .speaker-card:hover .speaker-image {
   transform: scale(1.05);
-  filter: grayscale(0%);
 }
 
 .speaker-image-overlay {
@@ -757,10 +757,34 @@ h6 {
 .speaker-role {
   font-size: 0.85rem;
   color: var(--color-on-surface);
+  margin-bottom: 12px;
 }
 
 .speaker-company {
   font-weight: bold;
+}
+
+.speaker-social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(47, 217, 244, 0.1);
+  border: 1px solid rgba(47, 217, 244, 0.25);
+  color: var(--color-primary);
+  padding: 6px 16px;
+  border-radius: var(--rounded-sm);
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin-top: 4px;
+}
+
+.speaker-social-btn:hover {
+  background: rgba(47, 217, 244, 0.2);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 12px rgba(47, 217, 244, 0.3);
+  color: #ffffff;
 }
 
 /* 5. Schedule Section (Timeline) */
@@ -1186,8 +1210,8 @@ h6 {
     justify-content: center;
   }
 
-  .speakers-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .speaker-card {
+    width: calc(50% - 10px);
   }
 
   .footer-grid {
@@ -1216,10 +1240,8 @@ h6 {
     display: block;
   }
 
-  .speakers-grid {
-    grid-template-columns: 1fr;
-    max-width: 320px;
-    margin: 0 auto;
+  .speaker-card {
+    width: 100%;
   }
 
   .timeline-line {
