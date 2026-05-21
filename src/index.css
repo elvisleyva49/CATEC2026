@@ -405,7 +405,7 @@ h6 {
 }
 
 .header-logo-img {
-  height: 36px;
+  height: 50px;
   width: auto;
   object-fit: contain;
 }
@@ -536,8 +536,15 @@ h6 {
 }
 
 @keyframes blinkCursor {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
 }
 
 .hero-visual {
@@ -550,9 +557,9 @@ h6 {
 /* Hero Image Wrapper — holds the image and applies edge fades */
 .hero-image-wrapper {
   position: relative;
-  width: 140%;
+  width: 170%;
   max-width: none;
-  margin-right: -25%;
+  margin-right: -35%;
   /* Fade left & right edges with a CSS mask */
   -webkit-mask-image:
     linear-gradient(to right,
@@ -573,7 +580,7 @@ h6 {
   width: 100%;
   height: auto;
   object-fit: cover;
-  filter: drop-shadow(0 15px 35px rgba(0,0,0,0.5));
+  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.5));
 }
 
 /* Mock IDE Code Editor Window (Legacy) */
@@ -1070,7 +1077,8 @@ h6 {
   align-items: center;
   gap: 60px;
   animation: scroll-marquee 25s linear infinite;
-  padding-right: 60px; /* match the gap so it loops seamlessly without a stutter */
+  padding-right: 60px;
+  /* match the gap so it loops seamlessly without a stutter */
 }
 
 .sponsors-marquee:hover {
@@ -1088,14 +1096,17 @@ h6 {
   flex-shrink: 0;
   padding: 30px;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.08); /* Más visible */
-  border: 1px solid rgba(255, 255, 255, 0.15); /* Borde más notorio */
+  background: rgba(255, 255, 255, 0.08);
+  /* Más visible */
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  /* Borde más notorio */
   backdrop-filter: blur(10px);
 }
 
 .sponsor-logo-card:hover {
   transform: translateY(-10px) scale(1.05);
-  background: rgba(255, 255, 255, 0.12); /* Más visible al pasar el mouse */
+  background: rgba(255, 255, 255, 0.12);
+  /* Más visible al pasar el mouse */
   border-color: rgba(47, 217, 244, 0.4);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(47, 217, 244, 0.2);
 }
@@ -1105,7 +1116,7 @@ h6 {
   height: 120px;
   object-fit: contain;
   transition: all 0.4s ease;
-  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
 }
 
 .sponsor-name {
@@ -1156,8 +1167,10 @@ h6 {
   0% {
     transform: translateX(0);
   }
+
   100% {
-    transform: translateX(-50%); /* Moves exactly half the width to loop seamlessly because we duplicated the array */
+    transform: translateX(-50%);
+    /* Moves exactly half the width to loop seamlessly because we duplicated the array */
   }
 }
 
