@@ -67,7 +67,7 @@ export const Speakers: React.FC = () => {
             <Card key={index} className="speaker-card" glowOnHover={true}>
               <div className="speaker-image-wrapper">
                 <img 
-                  src={speaker.image} 
+                  src={`${import.meta.env.BASE_URL}${speaker.image.replace(/^\//, '')}`} 
                   alt={speaker.name} 
                   className="speaker-image" 
                   onError={(e) => {
