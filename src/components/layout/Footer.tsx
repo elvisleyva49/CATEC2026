@@ -42,7 +42,7 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="footer-links-column">
-          <h4 className="footer-heading label-caps text-green">Enlaces</h4>
+          <h4 className="footer-heading label-caps text-purple">Enlaces</h4>
           <ul className="footer-links-list">
             <li><a href="#about" className="footer-link">Contact</a></li>
             <li><a href="#about" className="footer-link">Privacy Policy</a></li>
@@ -51,7 +51,7 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="footer-social-column">
-          <h4 className="footer-heading label-caps text-green">Social</h4>
+          <h4 className="footer-heading label-caps text-purple">Social</h4>
           <div className="footer-social-icons">
             <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="social-icon-btn" aria-label="GitHub">
               <GithubIcon size={20} />

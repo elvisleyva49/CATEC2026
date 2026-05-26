@@ -39,7 +39,7 @@ export const About: React.FC = () => {
     <section id="about" className="about-section section-padding">
       <div className="container about-grid">
         <div className="about-left">
-          <span className="section-tag label-mono text-green">// SOBRE EL EVENTO</span>
+          <span className="section-tag label-mono text-purple">// SOBRE EL EVENTO</span>
           <h2 className="section-title headline-lg">
             Un evento hecho por estudiantes, para estudiantes
           </h2>

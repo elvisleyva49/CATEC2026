@@ -1,47 +1,55 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
 
 :root {
-  /* Colors from DESIGN.md */
-  --color-surface: #131314;
-  --color-surface-dim: #131314;
-  --color-surface-bright: #3a393a;
-  --color-surface-lowest: #0e0e0f;
-  --color-surface-low: #1c1b1c;
-  --color-surface-container: #201f20;
-  --color-surface-high: #2a2a2b;
-  --color-surface-highest: #353436;
+  /* Paleta CATEC / afiche: morado profundo · azul noche · cyan · blanco */
+  --color-purple-deep: #14082a;
+  --color-purple-mid: #2a1452;
+  --color-purple-brand: #5b21b6;
+  --color-blue-night: #0a1530;
+  --color-blue-mid: #0c1c42;
 
-  --color-on-surface: #e5e2e3;
-  --color-on-surface-variant: #bbc9cd;
-  --color-inverse-surface: #e5e2e3;
-  --color-inverse-on-surface: #313031;
+  --color-surface: rgba(16, 8, 40, 0.92);
+  --color-surface-dim: #120a28;
+  --color-surface-bright: #3d2a6b;
+  --color-surface-lowest: #0b0618;
+  --color-surface-low: #14082a;
+  --color-surface-container: #1a0f35;
+  --color-surface-high: #221040;
+  --color-surface-highest: #2e1458;
 
-  --color-outline: #859397;
-  --color-outline-variant: #3c494c;
-  --color-surface-tint: #2fd9f4;
+  --color-on-surface: #f8fafc;
+  --color-on-surface-variant: #b8c5eb;
+  --color-inverse-surface: #f8fafc;
+  --color-inverse-on-surface: #14082a;
 
-  --color-primary: #8aebff;
-  --color-on-primary: #00363e;
-  --color-primary-container: #22d3ee;
-  --color-on-primary-container: #005763;
+  --color-outline: #7c8fd4;
+  --color-outline-variant: #3b3566;
+  --color-surface-tint: #3ae8ff;
+
+  --color-primary: #7ef0ff;
+  --color-on-primary: #0a1530;
+  --color-primary-container: #3ae8ff;
+  --color-on-primary-container: #004e5a;
   --color-inverse-primary: #006877;
 
-  --color-secondary: #4de082;
-  --color-on-secondary: #003919;
-  --color-secondary-container: #00b55d;
-  --color-on-secondary-container: #003e1c;
+  /* Acento institucional morado (antes verde neón) */
+  --color-secondary: #a78bfa;
+  --color-on-secondary: #2e1064;
+  --color-secondary-container: #6d28d9;
+  --color-on-secondary-container: #ede9fe;
 
-  --color-tertiary: #d5dcf6;
-  --color-on-tertiary: #283044;
+  --color-tertiary: #c4b5fd;
+  --color-on-tertiary: #1e1035;
+
+  --color-success: #4de082;
+  --color-on-success: #003919;
 
   --color-error: #ffb4ab;
   --color-on-error: #690005;
 
-  --color-background: #0a0a0b;
-  /* Deepest base layer */
-  --color-bg-elevated: #0f172a;
-  /* Midnight Blue for container depth */
-  --color-on-background: #e5e2e3;
+  --color-background: #0b0618;
+  --color-bg-elevated: #120a28;
+  --color-on-background: #f8fafc;
 
   /* Typography Fonts */
   --font-headline: 'Plus Jakarta Sans', sans-serif;
@@ -68,10 +76,10 @@
   --spacing-margin-desktop: 64px;
 
   /* Shadows and Glows */
-  --glow-primary: 0 0 20px rgba(138, 235, 255, 0.15);
-  --glow-secondary: 0 0 20px rgba(77, 224, 130, 0.15);
-  --glow-primary-strong: 0 0 25px rgba(138, 235, 255, 0.3);
-  --border-glass: 1px solid rgba(133, 147, 151, 0.12);
+  --glow-primary: 0 0 20px rgba(126, 240, 255, 0.18);
+  --glow-secondary: 0 0 20px rgba(167, 139, 250, 0.2);
+  --glow-primary-strong: 0 0 28px rgba(58, 232, 255, 0.35);
+  --border-glass: 1px solid rgba(167, 139, 250, 0.14);
 }
 
 /* Reset and Base Styles */
@@ -202,9 +210,30 @@ h6 {
   margin-right: auto;
 }
 
-/* Gradients and helper colors */
+/* Gradients and helper colors — estilo afiche */
+.text-gradient-flyer {
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #e0f4ff 40%,
+    var(--color-primary) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
+.text-gradient-cyan-purple {
+  background: linear-gradient(135deg, var(--color-primary) 20%, var(--color-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
 .text-gradient-cyan-green {
-  background: linear-gradient(135deg, var(--color-primary) 30%, var(--color-secondary) 100%);
+  background: linear-gradient(135deg, var(--color-primary) 20%, var(--color-secondary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -215,8 +244,13 @@ h6 {
   color: var(--color-primary);
 }
 
+.text-purple,
 .text-green {
   color: var(--color-secondary);
+}
+
+.text-success {
+  color: var(--color-success);
 }
 
 .text-muted {
@@ -257,18 +291,18 @@ h6 {
 
 /* Reusable Glassmorphism Card */
 .glass-container {
-  background: rgba(15, 23, 42, 0.45);
+  background: rgba(18, 10, 40, 0.55);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: var(--border-glass);
   border-radius: var(--rounded-lg);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-container.glow-hover:hover {
-  border-color: rgba(138, 235, 255, 0.25);
-  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.6), var(--glow-primary);
+  border-color: rgba(126, 240, 255, 0.28);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.55), var(--glow-primary);
 }
 
 /* Reusable UI Components */
@@ -347,17 +381,32 @@ h6 {
   font-weight: 500;
   padding: 6px 12px;
   border-radius: var(--rounded-full);
-  background: rgba(77, 224, 130, 0.08);
-  border: 1px solid rgba(77, 224, 130, 0.25);
+  background: rgba(167, 139, 250, 0.1);
+  border: 1px solid rgba(167, 139, 250, 0.28);
   color: var(--color-secondary);
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
 .chip-cyan {
-  background: rgba(138, 235, 255, 0.08);
-  border: 1px solid rgba(138, 235, 255, 0.25);
+  background: rgba(126, 240, 255, 0.1);
+  border: 1px solid rgba(126, 240, 255, 0.28);
   color: var(--color-primary);
+}
+
+.chip-edition {
+  background: #f8fafc;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  color: var(--color-purple-brand);
+  font-weight: 700;
+}
+
+.chip-dates {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-container));
+  border: 1px solid rgba(126, 240, 255, 0.5);
+  color: var(--color-on-primary);
+  font-weight: 700;
+  box-shadow: 0 6px 20px rgba(58, 232, 255, 0.25);
 }
 
 /* 1. Header Navigation */
@@ -375,11 +424,11 @@ h6 {
 }
 
 .header-wrapper.scrolled {
-  background: rgba(10, 10, 11, 0.75);
+  background: rgba(11, 6, 24, 0.88);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   height: 70px;
-  border-bottom: 1px solid rgba(138, 235, 255, 0.1);
+  border-bottom: 1px solid rgba(126, 240, 255, 0.12);
 }
 
 .header-container {
@@ -512,8 +561,66 @@ h6 {
   margin-bottom: var(--spacing-md);
 }
 
+.trust-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
+  margin-bottom: var(--spacing-md);
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.trust-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--color-on-surface-variant);
+}
+
+.trust-logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.trust-logo-slot {
+  min-width: 72px;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px dashed rgba(255, 255, 255, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-on-surface-variant);
+}
+
+.hero-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: var(--spacing-md);
+}
+
 .hero-title {
   margin-bottom: var(--spacing-md);
+}
+
+.hero-title-flyer {
+  font-family: var(--font-headline);
+  font-size: clamp(2rem, 4vw + 0.5rem, 3.25rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  max-width: 14ch;
 }
 
 .hero-description {
@@ -838,7 +945,7 @@ h6 {
   bottom: 0;
   left: 120px;
   width: 2px;
-  background: linear-gradient(to bottom, rgba(138, 235, 255, 0.1) 0%, var(--color-primary) 30%, var(--color-secondary) 70%, rgba(77, 224, 130, 0.1) 100%);
+  background: linear-gradient(to bottom, rgba(126, 240, 255, 0.1) 0%, var(--color-primary) 35%, var(--color-secondary) 70%, rgba(167, 139, 250, 0.12) 100%);
 }
 
 .timeline-item {
@@ -885,9 +992,9 @@ h6 {
 }
 
 .timeline-item.active .timeline-card {
-  border-color: rgba(77, 224, 130, 0.3);
+  border-color: rgba(167, 139, 250, 0.35);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5), var(--glow-secondary);
-  background: rgba(15, 23, 42, 0.7);
+  background: rgba(18, 10, 40, 0.75);
 }
 
 .event-title {
@@ -1013,7 +1120,7 @@ h6 {
   margin-bottom: 32px;
   overflow: hidden;
   text-align: left;
-  border: 1px solid rgba(77, 224, 130, 0.2);
+  border: 1px solid rgba(126, 240, 255, 0.25);
 }
 
 .ticket-header {
@@ -1022,7 +1129,7 @@ h6 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px dashed rgba(77, 224, 130, 0.2);
+  border-bottom: 1px dashed rgba(126, 240, 255, 0.2);
 }
 
 .ticket-body {
@@ -1053,13 +1160,39 @@ h6 {
   background: rgba(14, 14, 15, 0.4);
   text-align: center;
   font-size: 0.7rem;
-  border-top: 1px dashed rgba(77, 224, 130, 0.2);
+  border-top: 1px dashed rgba(126, 240, 255, 0.2);
 }
 
-/* 7. Sponsors Section */
+/* 7. Sponsors Section — franja clara estilo afiche */
 .sponsors-section {
   border-color: rgba(255, 255, 255, 0.05);
-  background: radial-gradient(circle at center, rgba(15, 23, 42, 0.6) 0%, transparent 70%);
+  background: transparent;
+  padding-bottom: 0;
+}
+
+.sponsors-band {
+  margin-top: 32px;
+  border-radius: var(--rounded-lg);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
+}
+
+.sponsors-band__head {
+  background: linear-gradient(90deg, var(--color-purple-deep), var(--color-purple-brand));
+  padding: 12px 20px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: #f5f3ff;
+  text-align: center;
+}
+
+.sponsors-band__body {
+  background: #f8fafc;
+  padding: 28px 0 8px;
 }
 
 .sponsors-marquee-wrapper {
@@ -1096,19 +1229,15 @@ h6 {
   flex-shrink: 0;
   padding: 30px;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.08);
-  /* Más visible */
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  /* Borde más notorio */
-  backdrop-filter: blur(10px);
+  background: #ffffff;
+  border: 1px dashed rgba(91, 33, 182, 0.28);
+  box-shadow: 0 4px 18px rgba(91, 33, 182, 0.08);
 }
 
 .sponsor-logo-card:hover {
-  transform: translateY(-10px) scale(1.05);
-  background: rgba(255, 255, 255, 0.12);
-  /* Más visible al pasar el mouse */
-  border-color: rgba(47, 217, 244, 0.4);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(47, 217, 244, 0.2);
+  transform: translateY(-8px) scale(1.03);
+  border-color: rgba(58, 232, 255, 0.55);
+  box-shadow: 0 14px 32px rgba(91, 33, 182, 0.15), 0 0 20px rgba(58, 232, 255, 0.15);
 }
 
 .sponsor-logo-img {
@@ -1123,15 +1252,14 @@ h6 {
   margin: 0;
   font-size: 1.1rem;
   font-weight: 600;
-  color: var(--color-on-surface);
+  color: var(--color-purple-brand);
   text-align: center;
   letter-spacing: 0.5px;
   transition: color 0.3s ease;
 }
 
 .sponsor-logo-card:hover .sponsor-name {
-  color: var(--color-primary);
-  text-shadow: 0 0 10px rgba(47, 217, 244, 0.4);
+  color: #4c1d95;
 }
 
 .sponsor-socials {
@@ -1409,9 +1537,11 @@ h6 {
   pointer-events: none;
   background-color: var(--color-background);
   background-image:
-    radial-gradient(circle at 12% 20%, rgba(47, 217, 244, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 88% 80%, rgba(77, 224, 130, 0.025) 0%, transparent 50%);
-  background-size: 100% 100%, 100% 100%;
+    radial-gradient(ellipse 120% 80% at 0% 0%, rgba(42, 20, 82, 0.55) 0%, transparent 52%),
+    radial-gradient(ellipse 90% 70% at 100% 20%, rgba(10, 21, 48, 0.5) 0%, transparent 50%),
+    radial-gradient(circle at 12% 20%, rgba(58, 232, 255, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 88% 80%, rgba(109, 40, 217, 0.08) 0%, transparent 50%);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%;
 }
 
 .bg-tech-canvas {
@@ -1449,7 +1579,7 @@ h6 {
 .orb-2 {
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, var(--color-secondary) 0%, transparent 70%);
+  background: radial-gradient(circle, var(--color-secondary-container) 0%, transparent 70%);
   bottom: -15%;
   left: -10%;
   animation-duration: 28s;
@@ -1459,7 +1589,7 @@ h6 {
 .orb-3 {
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, #a855f7 0%, transparent 70%);
+  background: radial-gradient(circle, var(--color-blue-mid) 0%, transparent 70%);
   top: 40%;
   left: 35%;
   animation-duration: 35s;

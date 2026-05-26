@@ -64,12 +64,13 @@ export const BackgroundTech: React.FC = () => {
         const glow = 0.5 + Math.sin(this.pulse) * 0.25; // 0.25 to 0.75
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(30, 120, 255, ${glow * 0.8})`;
+        ctx.fillStyle = `rgba(58, 232, 255, ${glow * 0.75})`;
         ctx.fill();
 
         // Glow halo
         const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius * 3);
-        grad.addColorStop(0, `rgba(30, 120, 255, ${glow * 0.15})`);
+        grad.addColorStop(0, `rgba(109, 40, 217, ${glow * 0.12})`);
+        grad.addColorStop(0.5, `rgba(58, 232, 255, ${glow * 0.1})`);
         grad.addColorStop(1, 'transparent');
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius * 3, 0, Math.PI * 2);
@@ -100,7 +101,7 @@ export const BackgroundTech: React.FC = () => {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(mouse.x, mouse.y);
-            ctx.strokeStyle = `rgba(30, 120, 255, ${alpha})`;
+            ctx.strokeStyle = `rgba(126, 240, 255, ${alpha})`;
             ctx.lineWidth = 1.2;
             ctx.stroke();
           }
@@ -116,7 +117,7 @@ export const BackgroundTech: React.FC = () => {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(30, 120, 255, ${alpha})`;
+            ctx.strokeStyle = `rgba(126, 240, 255, ${alpha})`;
             ctx.lineWidth = 0.8;
             ctx.stroke();
           }
@@ -128,8 +129,8 @@ export const BackgroundTech: React.FC = () => {
     const drawMouseGlow = () => {
       if (!ctx || !mouse.active) return;
       const grad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 18);
-      grad.addColorStop(0, 'rgba(30, 120, 255, 0.35)');
-      grad.addColorStop(0.5, 'rgba(30, 120, 255, 0.08)');
+      grad.addColorStop(0, 'rgba(126, 240, 255, 0.35)');
+      grad.addColorStop(0.5, 'rgba(109, 40, 217, 0.1)');
       grad.addColorStop(1, 'transparent');
       ctx.beginPath();
       ctx.arc(mouse.x, mouse.y, 18, 0, Math.PI * 2);

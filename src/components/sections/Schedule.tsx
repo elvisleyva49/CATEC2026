@@ -7,7 +7,7 @@ interface ScheduleItem {
   title: string;
   description: string;
   location: string;
-  tagType: 'cyan' | 'green';
+  tagType: 'cyan' | 'purple';
 }
 
 export const Schedule: React.FC = () => {
@@ -26,7 +26,7 @@ export const Schedule: React.FC = () => {
       title: 'Workshop: DevSecOps In-Depth',
       description: 'Taller práctico sobre la integración de seguridad en pipelines de CI/CD utilizando herramientas de código abierto.',
       location: 'LAB 01',
-      tagType: 'green',
+      tagType: 'purple',
     },
     {
       time: '01:00 PM',
@@ -41,7 +41,7 @@ export const Schedule: React.FC = () => {
     <section id="schedule" className="schedule-section section-padding">
       <div className="container">
         <div className="section-header-center">
-          <span className="section-tag label-mono text-green">// CRONOGRAMA TÉCNICO</span>
+          <span className="section-tag label-mono text-purple">// CRONOGRAMA TÉCNICO</span>
           <h2 className="section-title headline-lg">Calendario del Evento</h2>
         </div>
 

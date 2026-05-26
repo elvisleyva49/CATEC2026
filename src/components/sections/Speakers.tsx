@@ -29,7 +29,7 @@ export const Speakers: React.FC = () => {
       image: '/speakers/ponente3.png',
     },
     {
-      name: 'Ing. Dr. Renzo Tazo Cohaila',
+      name: 'Ing. Dr. Renzo Taco Coayla',
       role: 'AI Research',
       company: 'OpenAI',
       image: '/speakers/ponente4.png',
@@ -58,7 +58,7 @@ export const Speakers: React.FC = () => {
     <section id="speakers" className="speakers-section section-padding">
       <div className="container">
         <div className="section-header-center">
-          <span className="section-tag label-mono text-green">// LIDERAZGO TÉCNICO</span>
+          <span className="section-tag label-mono text-purple">// LIDERAZGO TÉCNICO</span>
           <h2 className="section-title headline-lg">Ponentes de Élite</h2>
         </div>
 

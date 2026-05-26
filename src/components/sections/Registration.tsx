@@ -72,7 +72,7 @@ export const Registration: React.FC = () => {
                 <div className="form-fields-wrapper">
                   {/* Name field */}
                   <div className="form-group">
-                    <label htmlFor="fullName" className="form-label label-caps text-green">
+                    <label htmlFor="fullName" className="form-label label-caps text-purple">
                       Nombre Completo
                     </label>
                     <input 
@@ -91,7 +91,7 @@ export const Registration: React.FC = () => {
 
                   {/* Email field */}
                   <div className="form-group">
-                    <label htmlFor="email" className="form-label label-caps text-green">
+                    <label htmlFor="email" className="form-label label-caps text-purple">
                       Email Académico
                     </label>
                     <input 
@@ -110,7 +110,7 @@ export const Registration: React.FC = () => {
 
                   {/* Attendance Select field */}
                   <div className="form-group">
-                    <label htmlFor="attendanceType" className="form-label label-caps text-green">
+                    <label htmlFor="attendanceType" className="form-label label-caps text-purple">
                       Tipo de Asistencia
                     </label>
                     <select
@@ -138,7 +138,7 @@ export const Registration: React.FC = () => {
               </form>
             ) : (
               <div className="registration-success-screen animated-float">
-                <CheckCircle2 className="success-icon text-green" size={64} />
+                <CheckCircle2 className="success-icon text-success" size={64} />
                 <h3 className="success-title headline-lg">¡Registro Exitoso!</h3>
                 <p className="success-subtitle body-md text-muted">
                   Tu cupo para la conferencia ha sido confirmado en nuestro sistema.
@@ -147,7 +147,7 @@ export const Registration: React.FC = () => {
                 <div className="ticket-details glass-container">
                   <div className="ticket-header border-bottom">
                     <span className="ticket-brand label-mono text-cyan">UPT SYSTEMS ENGINEERING 2024</span>
-                    <span className="ticket-id label-mono text-green">ID: #{(Math.floor(100000 + Math.random() * 900000))}</span>
+                    <span className="ticket-id label-mono text-cyan">ID: #{(Math.floor(100000 + Math.random() * 900000))}</span>
                   </div>
                   <div className="ticket-body">
                     <div className="ticket-row">
@@ -160,7 +160,7 @@ export const Registration: React.FC = () => {
                     </div>
                     <div className="ticket-row">
                       <span className="ticket-label label-caps">Modalidad</span>
-                      <span className="ticket-value body-md text-green">{formData.attendanceType}</span>
+                      <span className="ticket-value body-md text-cyan">{formData.attendanceType}</span>
                     </div>
                   </div>
                   <div className="ticket-footer">

@@ -2,16 +2,24 @@ import React from 'react';
 
 interface ChipProps {
   children: React.ReactNode;
-  variant?: 'green' | 'cyan';
+  variant?: 'purple' | 'cyan' | 'edition' | 'dates';
   className?: string;
 }
 
 export const Chip: React.FC<ChipProps> = ({
   children,
-  variant = 'green',
+  variant = 'purple',
   className = '',
 }) => {
-  const variantClass = variant === 'cyan' ? 'chip-cyan' : '';
+  const variantClass =
+    variant === 'cyan'
+      ? 'chip-cyan'
+      : variant === 'edition'
+        ? 'chip-edition'
+        : variant === 'dates'
+          ? 'chip-dates'
+          : '';
+
   return (
     <span className={`chip ${variantClass} ${className}`}>
       {children}

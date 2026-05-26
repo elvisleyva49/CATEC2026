@@ -5,8 +5,8 @@ import { Chip } from '../ui/Chip';
 import uptFondo from '../../assets/uptfondo.png';
 
 export const Hero: React.FC = () => {
-  const line1 = 'CATEC 2026 - I:';
-  const line2 = 'Forjando líderes';
+  const line1 = 'Capacitación';
+  const line2 = 'tecnológica';
   const [displayedLine1, setDisplayedLine1] = useState('');
   const [displayedLine2, setDisplayedLine2] = useState('');
   const [phase, setPhase] = useState<'line1' | 'pause' | 'line2' | 'done'>('line1');
@@ -57,24 +57,40 @@ export const Hero: React.FC = () => {
     <section id="home" className="hero-section section-padding">
       <div className="container hero-grid">
         <div className="hero-content">
+          <div className="trust-strip">
+            <span className="trust-label">Avalado por</span>
+            <div className="trust-logos">
+              <span className="trust-logo-slot">Colegio</span>
+              <span className="trust-logo-slot">Universidad</span>
+              <span className="trust-logo-slot">Escuela</span>
+              <span className="trust-logo-slot">Comunidad</span>
+            </div>
+          </div>
+
           <div className="hero-badge-wrapper">
             <Chip variant="cyan" className="hero-chip">
-              TACNA · 2026 · SYSTEMS ENGINEERING
+              TACNA · CATEC 2026-I
             </Chip>
           </div>
 
-          <h1 className="hero-title headline-xl">
+          <div className="hero-pills">
+            <Chip variant="edition">2026 · I</Chip>
+            <Chip variant="dates">Del 6 al 13 de junio</Chip>
+          </div>
+
+          <h1 className="hero-title hero-title-flyer text-gradient-flyer">
             {displayedLine1}
             {phase === 'line1' && <span className="typewriter-cursor">|</span>}
             {displayedLine1.length > 0 && <br />}
-            <span className="text-gradient-cyan-green">
+            <span>
               {displayedLine2}
               {(phase === 'line2' || phase === 'pause') && <span className="typewriter-cursor">|</span>}
             </span>
           </h1>
 
           <p className="hero-description body-lg">
-            Capacitación Tecnológica dirigida a estudiantes universitarios e interesados
+            Dirigido a estudiantes de la UPT y público en general. Una semana de ponencias,
+            talleres y experiencias guiadas en tecnología aplicada.
           </p>
 
           <div className="hero-actions">
@@ -96,8 +112,8 @@ export const Hero: React.FC = () => {
 
         <div className="hero-visual animated-float">
           <div className="hero-image-wrapper">
-            <img 
-              src={uptFondo} 
+            <img
+              src={uptFondo}
               alt="Estudiante programando en CATEC"
               className="hero-image"
             />
