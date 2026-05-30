@@ -1,7 +1,48 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import tecnologiaVideo from '../../assets/tecnologia.mp4';
+import tecnologiaPoster from '../../assets/tecnologia-poster.webp';
+
+const CROSSFADE_DURATION = 1.1;
+
+const prepareBackgroundVideo = (video: HTMLVideoElement) => {
+  video.muted = true;
+  video.defaultMuted = true;
+  video.playsInline = true;
+};
+
+const loadBackgroundVideo = (video: HTMLVideoElement) => {
+  if (video.src) return;
+  video.preload = 'auto';
+  video.src = tecnologiaVideo;
+};
 
 export const BackgroundTech: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const videoStackRef = useRef<HTMLDivElement>(null);
+  const videoARef = useRef<HTMLVideoElement>(null);
+  const videoBRef = useRef<HTMLVideoElement>(null);
+  const [isVideoReady, setIsVideoReady] = useState(false);
+
+  useEffect(() => {
+    const preloadVideo = document.createElement('link');
+    preloadVideo.rel = 'preload';
+    preloadVideo.as = 'video';
+    preloadVideo.href = tecnologiaVideo;
+    preloadVideo.type = 'video/mp4';
+
+    const preloadPoster = document.createElement('link');
+    preloadPoster.rel = 'preload';
+    preloadPoster.as = 'image';
+    preloadPoster.href = tecnologiaPoster;
+
+    document.head.appendChild(preloadVideo);
+    document.head.appendChild(preloadPoster);
+
+    return () => {
+      preloadVideo.remove();
+      preloadPoster.remove();
+    };
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -186,8 +227,177 @@ export const BackgroundTech: React.FC = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const videoA = videoARef.current;
+    const videoB = videoBRef.current;
+    const stack = videoStackRef.current;
+    if (!videoA || !videoB || !stack) return;
+
+    prepareBackgroundVideo(videoA);
+    prepareBackgroundVideo(videoB);
+    loadBackgroundVideo(videoA);
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    const setLayerOpacities = (a: number, b: number) => {
+      stack.style.setProperty('--video-a-opacity', String(a));
+      stack.style.setProperty('--video-b-opacity', String(b));
+    };
+
+    let activeLayer: 'a' | 'b' = 'a';
+    let isCrossfading = false;
+    let fadeStart = 0;
+    let fadeRafId = 0;
+    let duration = 0;
+
+    const smoothstep = (t: number) => t * t * (3 - 2 * t);
+
+    const getVideos = () => ({
+      outgoing: activeLayer === 'a' ? videoA : videoB,
+      incoming: activeLayer === 'a' ? videoB : videoA,
+    });
+
+    const resetLoopState = () => {
+      isCrossfading = false;
+      if (fadeRafId) cancelAnimationFrame(fadeRafId);
+      fadeRafId = 0;
+      videoA.pause();
+      videoB.pause();
+      videoA.currentTime = 0;
+      videoB.currentTime = 0;
+      activeLayer = 'a';
+      setLayerOpacities(1, 0);
+    };
+
+    const finishCrossfade = () => {
+      const { outgoing, incoming } = getVideos();
+      isCrossfading = false;
+      if (fadeRafId) cancelAnimationFrame(fadeRafId);
+      fadeRafId = 0;
+
+      outgoing.pause();
+      outgoing.currentTime = 0;
+      activeLayer = activeLayer === 'a' ? 'b' : 'a';
+      setLayerOpacities(activeLayer === 'a' ? 1 : 0, activeLayer === 'b' ? 1 : 0);
+      void incoming.play().catch(() => {});
+    };
+
+    const runCrossfadeFrame = (now: number) => {
+      const elapsed = (now - fadeStart) / 1000;
+      const t = Math.min(1, elapsed / CROSSFADE_DURATION);
+      const eased = smoothstep(t);
+
+      if (activeLayer === 'a') {
+        setLayerOpacities(1 - eased, eased);
+      } else {
+        setLayerOpacities(eased, 1 - eased);
+      }
+
+      if (t >= 1) {
+        finishCrossfade();
+        return;
+      }
+
+      fadeRafId = requestAnimationFrame(runCrossfadeFrame);
+    };
+
+    const beginCrossfade = () => {
+      if (isCrossfading || duration <= CROSSFADE_DURATION) return;
+
+      const { incoming } = getVideos();
+      loadBackgroundVideo(incoming);
+      isCrossfading = true;
+      incoming.currentTime = 0;
+      void incoming.play().catch(() => {});
+      fadeStart = performance.now();
+      fadeRafId = requestAnimationFrame(runCrossfadeFrame);
+    };
+
+    const onTimeUpdate = () => {
+      if (isCrossfading || prefersReducedMotion.matches) return;
+
+      const { outgoing } = getVideos();
+      const d = outgoing.duration;
+      if (!d || Number.isNaN(d)) return;
+
+      duration = d;
+      if (outgoing.currentTime >= d - CROSSFADE_DURATION) {
+        beginCrossfade();
+      }
+    };
+
+    const syncPlayback = () => {
+      resetLoopState();
+      setIsVideoReady(false);
+
+      if (prefersReducedMotion.matches) {
+        setIsVideoReady(true);
+        return;
+      }
+
+      void videoA.play().catch(() => {});
+    };
+
+    const onVideoAReady = () => {
+      videoA.removeEventListener('canplay', onVideoAReady);
+      loadBackgroundVideo(videoB);
+      setIsVideoReady(true);
+
+      if (!prefersReducedMotion.matches) {
+        void videoA.play().catch(() => {});
+      }
+    };
+
+    const onMetadata = () => {
+      const d = videoA.duration;
+      if (d && !Number.isNaN(d)) duration = d;
+    };
+
+    syncPlayback();
+
+    if (videoA.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA) {
+      onVideoAReady();
+    } else {
+      videoA.addEventListener('canplay', onVideoAReady);
+    }
+
+    videoA.addEventListener('loadedmetadata', onMetadata);
+    videoA.addEventListener('timeupdate', onTimeUpdate);
+    videoB.addEventListener('timeupdate', onTimeUpdate);
+    prefersReducedMotion.addEventListener('change', syncPlayback);
+
+    return () => {
+      if (fadeRafId) cancelAnimationFrame(fadeRafId);
+      videoA.removeEventListener('canplay', onVideoAReady);
+      videoA.removeEventListener('loadedmetadata', onMetadata);
+      videoA.removeEventListener('timeupdate', onTimeUpdate);
+      videoB.removeEventListener('timeupdate', onTimeUpdate);
+      prefersReducedMotion.removeEventListener('change', syncPlayback);
+    };
+  }, []);
+
   return (
     <div className="bg-tech-wrapper">
+      <div className={`bg-tech-video-stage${isVideoReady ? ' is-ready' : ''}`} aria-hidden="true">
+        <div
+          className="bg-tech-video-poster"
+          style={{ backgroundImage: `url(${tecnologiaPoster})` }}
+        />
+        <div
+          ref={videoStackRef}
+          className="bg-tech-video-stack"
+          style={
+            {
+              '--video-a-opacity': 1,
+              '--video-b-opacity': 0,
+            } as React.CSSProperties
+          }
+        >
+          <video ref={videoARef} className="bg-tech-video bg-tech-video--a" muted playsInline />
+          <video ref={videoBRef} className="bg-tech-video bg-tech-video--b" muted playsInline />
+        </div>
+      </div>
+      <div className="bg-tech-video-overlay" aria-hidden="true" />
       <div className="bg-glow-orb orb-1"></div>
       <div className="bg-glow-orb orb-2"></div>
       <div className="bg-glow-orb orb-3"></div>

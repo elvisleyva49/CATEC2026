@@ -1,5 +1,6 @@
-import React from 'react';
-import { Cpu, Globe, MessageSquare } from 'lucide-react';
+import React, { useState } from 'react';
+import catecLogo from '../../assets/logo_catec.png';
+import { PrivacyModal } from '../ui/PrivacyModal';
 
 const GithubIcon: React.FC<{ size?: number }> = ({ size = 20 }) => (
   <svg
@@ -18,8 +19,41 @@ const GithubIcon: React.FC<{ size?: number }> = ({ size = 20 }) => (
   </svg>
 );
 
+const FacebookIcon: React.FC<{ size?: number }> = ({ size = 20 }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+  </svg>
+);
+
+const WhatsappIcon: React.FC<{ size?: number }> = ({ size = 20 }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+  </svg>
+);
+
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
+  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -33,34 +67,34 @@ export const Footer: React.FC = () => {
       <div className="container footer-grid">
         <div className="footer-brand-column">
           <div className="logo-wrapper footer-logo" onClick={scrollToTop}>
-            <Cpu className="logo-icon text-cyan" size={24} />
+            <img src={catecLogo} alt="CATEC Logo" className="header-logo-img" />
             <span className="logo-text">Catec <span className="text-muted">2026-I</span></span>
           </div>
           <p className="footer-description body-md">
-            Empoderando a la próxima generación de ingenieros en el sur del Perú a través de la excelencia técnica.
+            Impulsando el aprendizaje, la innovación y el desarrollo tecnológico en la nueva generación de profesionales del sur del Perú.
           </p>
         </div>
 
         <div className="footer-links-column">
           <h4 className="footer-heading label-caps text-purple">Enlaces</h4>
           <ul className="footer-links-list">
-            <li><a href="#about" className="footer-link">Contact</a></li>
-            <li><a href="#about" className="footer-link">Privacy Policy</a></li>
-            <li><a href="#about" className="footer-link">University Credits</a></li>
+            <li><a href="https://www.facebook.com/CatecEpis" target="_blank" rel="noopener noreferrer" className="footer-link">Contacto</a></li>
+            <li><button onClick={() => setIsPrivacyModalOpen(true)} className="footer-link" style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>Política de privacidad</button></li>
+            <li><a href="https://portal.upt.edu.pe/site/web/contenido/inicio" target="_blank" rel="noopener noreferrer" className="footer-link">Universidad Privada de Tacna</a></li>
           </ul>
         </div>
 
         <div className="footer-social-column">
           <h4 className="footer-heading label-caps text-purple">Social</h4>
           <div className="footer-social-icons">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="social-icon-btn" aria-label="GitHub">
+            <a href="https://github.com/catec2026/catec2026.github.io.git" target="_blank" rel="noopener noreferrer" className="social-icon-btn" aria-label="GitHub">
               <GithubIcon size={20} />
             </a>
-            <a href="https://upt.edu.pe" target="_blank" rel="noopener noreferrer" className="social-icon-btn" aria-label="Website">
-              <Globe size={20} />
+            <a href="https://www.facebook.com/CatecEpis" target="_blank" rel="noopener noreferrer" className="social-icon-btn" aria-label="Facebook">
+              <FacebookIcon size={20} />
             </a>
-            <a href="https://discord.com" target="_blank" rel="noopener noreferrer" className="social-icon-btn" aria-label="Discord">
-              <MessageSquare size={20} />
+            <a href="http://wa.me/51903002082" target="_blank" rel="noopener noreferrer" className="social-icon-btn" aria-label="WhatsApp">
+              <WhatsappIcon size={20} />
             </a>
           </div>
         </div>
@@ -68,9 +102,14 @@ export const Footer: React.FC = () => {
 
       <div className="footer-bottom">
         <p className="copyright-text label-mono">
-          © {currentYear} Evento organizado por la Escuela de Ingenieria de Sistemas. Todos los derechos reservados.
+          © {currentYear} Evento organizado por la Escuela de Ingenieria de Sistemas de la Universidad Privada de Tacna. Todos los derechos reservados.
         </p>
       </div>
+
+      <PrivacyModal 
+        isOpen={isPrivacyModalOpen} 
+        onClose={() => setIsPrivacyModalOpen(false)} 
+      />
     </footer>
   );
 };

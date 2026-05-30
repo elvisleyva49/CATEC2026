@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { Card } from '../ui/Card';
-
 import img1 from '../../assets/img1.webp';
 import img2 from '../../assets/img2.webp';
 import img3 from '../../assets/img3.webp';
@@ -44,33 +42,22 @@ export const About: React.FC = () => {
             Un evento hecho por estudiantes, para estudiantes
           </h2>
           <p className="section-desc body-md">
-            Las conferencias de CATEC son realizadas cada año con el fin de aumentar el conocimiento a estudiantes de la Universidad Privada de Tacna, por el medio tecnológico los estudiantes de último año son convocados para realizar el evento donde se presentan expositores de todo el mundo para hablar de temas en tendencia sobre tecnología.
+            CATEC es un evento académico y tecnológico organizado anualmente por estudiantes de la Escuela Profesional de Ingeniería de Sistemas de la Universidad Privada de Tacna. Su propósito es promover el aprendizaje, la innovación y el intercambio de conocimientos mediante ponencias y actividades desarrolladas por especialistas nacionales e internacionales en tecnologías de tendencia.
           </p>
-
-          <div className="stats-row">
-            <Card className="stat-card" glowOnHover={false}>
-              <h3 className="stat-number headline-lg text-cyan">500+</h3>
-              <p className="stat-label label-mono">Participantes</p>
-            </Card>
-            <Card className="stat-card" glowOnHover={false}>
-              <h3 className="stat-number headline-lg text-cyan">15+</h3>
-              <p className="stat-label label-mono">Workshops</p>
-            </Card>
-          </div>
         </div>
 
         <div className="about-right">
           <div className="carousel-card" style={{ position: 'relative', height: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'transparent' }}>
             {images.map((img, idx) => (
-              <img 
+              <img
                 key={idx}
-                src={img} 
-                alt={`CATEC event gallery ${idx + 1}`} 
-                style={{ 
+                src={img}
+                alt={`CATEC event gallery ${idx + 1}`}
+                style={{
                   position: 'absolute',
-                  maxWidth: '100%', 
-                  maxHeight: '100%', 
-                  objectFit: 'contain', 
+                  maxWidth: '100%',
+                  maxHeight: '100%',
+                  objectFit: 'contain',
                   borderRadius: '12px',
                   opacity: currentImageIndex === idx ? 1 : 0,
                   transition: 'opacity 0.8s ease-in-out',
@@ -78,8 +65,8 @@ export const About: React.FC = () => {
                 }}
               />
             ))}
-            
-            <button 
+
+            <button
               onClick={prevImage}
               style={{
                 position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)',
@@ -90,7 +77,7 @@ export const About: React.FC = () => {
             >
               <ChevronLeft size={24} />
             </button>
-            <button 
+            <button
               onClick={nextImage}
               style={{
                 position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)',
@@ -101,11 +88,11 @@ export const About: React.FC = () => {
             >
               <ChevronRight size={24} />
             </button>
-            
+
             <div style={{ position: 'absolute', bottom: '15px', left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: '8px' }}>
               {images.map((_, idx) => (
-                <div 
-                  key={idx} 
+                <div
+                  key={idx}
                   style={{
                     width: '10px', height: '10px', borderRadius: '50%',
                     backgroundColor: idx === currentImageIndex ? '#00e5ff' : 'rgba(255, 255, 255, 0.4)',

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { Button } from '../ui/Button';
 import catecLogo from '../../assets/logo_catec.png';
 
 export const Header: React.FC = () => {
@@ -14,7 +13,7 @@ export const Header: React.FC = () => {
       setIsScrolled(window.scrollY > 20);
 
       // Scrollspy logic
-      const sections = ['home', 'about', 'speakers', 'schedule', 'register'];
+      const sections = ['home', 'about', 'speakers', 'schedule', 'sponsors'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -62,6 +61,12 @@ export const Header: React.FC = () => {
 
         <nav className="desktop-nav">
           <span
+            className={`nav-link ${activeSection === 'home' ? 'active' : ''}`}
+            onClick={() => scrollToSection('home')}
+          >
+            Inicio
+          </span>
+          <span
             className={`nav-link ${activeSection === 'about' ? 'active' : ''}`}
             onClick={() => scrollToSection('about')}
           >
@@ -80,22 +85,14 @@ export const Header: React.FC = () => {
             Calendario
           </span>
           <span
-            className={`nav-link ${activeSection === 'register' ? 'active' : ''}`}
-            onClick={() => scrollToSection('register')}
+            className={`nav-link ${activeSection === 'sponsors' ? 'active' : ''}`}
+            onClick={() => scrollToSection('sponsors')}
           >
-            Registro
+            Patrocinadores
           </span>
         </nav>
 
         <div className="header-actions">
-          <Button
-            variant="secondary"
-            className="register-now-btn"
-            onClick={() => scrollToSection('register')}
-          >
-            Regístrate Ahora
-          </Button>
-
           <button
             className="mobile-menu-toggle text-cyan"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -110,6 +107,12 @@ export const Header: React.FC = () => {
       {isMobileMenuOpen && (
         <div className="mobile-nav-menu glass-container">
           <nav className="mobile-nav-links">
+            <span
+              className={`mobile-nav-link ${activeSection === 'home' ? 'active' : ''}`}
+              onClick={() => scrollToSection('home')}
+            >
+              Inicio
+            </span>
             <span
               className={`mobile-nav-link ${activeSection === 'about' ? 'active' : ''}`}
               onClick={() => scrollToSection('about')}
@@ -129,18 +132,11 @@ export const Header: React.FC = () => {
               Calendario
             </span>
             <span
-              className={`mobile-nav-link ${activeSection === 'register' ? 'active' : ''}`}
-              onClick={() => scrollToSection('register')}
+              className={`mobile-nav-link ${activeSection === 'sponsors' ? 'active' : ''}`}
+              onClick={() => scrollToSection('sponsors')}
             >
-              Registro
+              Patrocinadores
             </span>
-            <Button
-              variant="primary"
-              className="w-full mt-4"
-              onClick={() => scrollToSection('register')}
-            >
-              Regístrate Ahora
-            </Button>
           </nav>
         </div>
       )}

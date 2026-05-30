@@ -2,14 +2,24 @@ import React, { useState, useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { Chip } from '../ui/Chip';
+import { CountryFlag } from '../ui/CountryFlag';
 import uptFondo from '../../assets/uptfondo.png';
 
 export const Hero: React.FC = () => {
+  const EVENT_START_PERU_MS = new Date('2026-06-01T18:00:00-05:00').getTime();
   const line1 = 'Capacitación';
   const line2 = 'tecnológica';
   const [displayedLine1, setDisplayedLine1] = useState('');
   const [displayedLine2, setDisplayedLine2] = useState('');
   const [phase, setPhase] = useState<'line1' | 'pause' | 'line2' | 'done'>('line1');
+  const [countdown, setCountdown] = useState(() => {
+    const diff = Math.max(0, EVENT_START_PERU_MS - Date.now());
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+    return { days, hours, minutes, seconds, started: diff === 0 };
+  });
 
   useEffect(() => {
     let timeout: ReturnType<typeof setTimeout>;
@@ -37,6 +47,21 @@ export const Hero: React.FC = () => {
     return () => clearTimeout(timeout);
   }, [displayedLine1, displayedLine2, phase]);
 
+  useEffect(() => {
+    const updateCountdown = () => {
+      const diff = Math.max(0, EVENT_START_PERU_MS - Date.now());
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+      setCountdown({ days, hours, minutes, seconds, started: diff === 0 });
+    };
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+    return () => clearInterval(interval);
+  }, [EVENT_START_PERU_MS]);
+
   const handleScrollTo = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -57,25 +82,10 @@ export const Hero: React.FC = () => {
     <section id="home" className="hero-section section-padding">
       <div className="container hero-grid">
         <div className="hero-content">
-          <div className="trust-strip">
-            <span className="trust-label">Avalado por</span>
-            <div className="trust-logos">
-              <span className="trust-logo-slot">Colegio</span>
-              <span className="trust-logo-slot">Universidad</span>
-              <span className="trust-logo-slot">Escuela</span>
-              <span className="trust-logo-slot">Comunidad</span>
-            </div>
-          </div>
-
-          <div className="hero-badge-wrapper">
-            <Chip variant="cyan" className="hero-chip">
-              TACNA · CATEC 2026-I
-            </Chip>
-          </div>
-
           <div className="hero-pills">
-            <Chip variant="edition">2026 · I</Chip>
-            <Chip variant="dates">Del 6 al 13 de junio</Chip>
+            <Chip variant="cyan" className="hero-chip">TACNA · PERÚ</Chip>
+            <Chip variant="dates">Del 01 al 05 de junio</Chip>
+            <Chip variant="edition">2026</Chip>
           </div>
 
           <h1 className="hero-title hero-title-flyer text-gradient-flyer">
@@ -89,17 +99,70 @@ export const Hero: React.FC = () => {
           </h1>
 
           <p className="hero-description body-lg">
-            Dirigido a estudiantes de la UPT y público en general. Una semana de ponencias,
-            talleres y experiencias guiadas en tecnología aplicada.
+            Dirigido a estudiantes universitarios, profesionales y público interesado en innovación y tecnología aplicada. Una semana de conferencias, talleres y experiencias orientadas al aprendizaje y la transformación digital.
           </p>
+
+          <div className="hero-countdown" role="status" aria-live="polite">
+            {!countdown.started ? (
+              <>
+                <p className="hero-countdown-title label-mono">
+                  <span className="hero-countdown-title-part hero-countdown-title-part--start">
+                    Inicio: lunes 01 junio ·
+                  </span>
+                  <span className="hero-countdown-title-part hero-countdown-title-part--time">
+                    18:00 (hora Perú)
+                  </span>
+                </p>
+                <div className="hero-countdown-inline">
+                  <span className="hero-countdown-segment">
+                    <strong>{String(countdown.days).padStart(2, '0')}</strong> días
+                  </span>
+                  <span className="hero-countdown-divider" aria-hidden="true">:</span>
+                  <span className="hero-countdown-segment">
+                    <strong>{String(countdown.hours).padStart(2, '0')}</strong> horas
+                  </span>
+                  <span className="hero-countdown-divider" aria-hidden="true">:</span>
+                  <span className="hero-countdown-segment">
+                    <strong>{String(countdown.minutes).padStart(2, '0')}</strong> minutos
+                  </span>
+                  <span className="hero-countdown-divider" aria-hidden="true">:</span>
+                  <span className="hero-countdown-segment">
+                    <strong>{String(countdown.seconds).padStart(2, '0')}</strong> segundos
+                  </span>
+                </div>
+                <div className="hero-audience-flags">
+                  <div className="hero-flag-badges">
+                    <span className="hero-flag-pill">
+                      <CountryFlag code="pe" label="Perú" size={20} />
+                      Perú
+                    </span>
+                    <span className="hero-flag-pill">
+                      <CountryFlag code="co" label="Colombia" size={20} />
+                      Colombia
+                    </span>
+                    <span className="hero-flag-pill">
+                      <CountryFlag code="ar" label="Argentina" size={20} />
+                      Argentina
+                    </span>
+                    <span className="hero-flag-pill">
+                      <CountryFlag code="cl" label="Chile" size={20} />
+                      Chile
+                    </span>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <p className="hero-countdown-live headline-md">CATEC 2026 ya comenzo.</p>
+            )}
+          </div>
 
           <div className="hero-actions">
             <Button
               variant="primary"
               icon={<ArrowRight size={18} />}
-              onClick={() => handleScrollTo('register')}
+              href="https://docs.google.com/forms/d/e/1FAIpQLSduGx1jeJ6kbg_Rl4-IX4nY3f5H5lq7zYWO57wua7Io3_TiYw/viewform"
             >
-              Asegura tu Cupo
+              Inscribete
             </Button>
             <Button
               variant="secondary"
